@@ -94,3 +94,4 @@ int main(){
         return 0;
 }
 ```
+### 6.Delete an existing FileZZ
