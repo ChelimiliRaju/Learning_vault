@@ -1,3 +1,5 @@
+### 1. create a new text file and write "Hello, World!" to it?
+```c
 #include<stdio.h>
 #include<unistd.h>
 #include<fcntl.h>
@@ -22,6 +24,9 @@ int main(){
 	close(fd);
 	return 0;
 }
+```
+### 2. Develop a C program to open an existing text file and display its contents?
+```c
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -43,7 +48,10 @@ int main() {
     close(fd);
     return 0;
 }
-
+```
+### 3.Implement a C program to create a new directory named "Test" in the current
+directory?
+```c
 #include<stdio.h>
 #include<unistd.h>
 #include<fcntl.h>
@@ -59,6 +67,7 @@ int main(){
 			return 0;
 	}
 }
+```
 #include<stdio.h>
 #include<unistd.h>
 #include<fcntl.h>
