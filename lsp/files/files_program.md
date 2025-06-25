@@ -1,4 +1,5 @@
 ### 1.Creating File and printing content with total bytes
+```c
 #include<stdio.h>
 #include<unistd.h>
 #include<fcntl.h>
@@ -23,3 +24,4 @@ int main(){
         close(fd);
         return 0;
 }
+```
