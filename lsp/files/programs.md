@@ -1,4 +1,4 @@
-###1.create a new text file and write "Hello, World!" to it?
+### 1.create a new text file and write "Hello, World!" to it?
 ```c
 #include<stdio.h>
 #include<unistd.h>
@@ -68,6 +68,8 @@ int main(){
 	}
 }
 ```
+### 4. Write a C program to check if a file named "sample.txt" exists in the current directory?
+```c
 #include<stdio.h>
 #include<unistd.h>
 #include<fcntl.h>
@@ -81,6 +83,7 @@ int main(){
 	else printf("file doesnot exist\n");
 	return 0;
 }
+```
 #include<stdio.h>
 
 int main(){
