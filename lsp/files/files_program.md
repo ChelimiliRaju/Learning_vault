@@ -25,3 +25,27 @@ int main(){
         return 0;
 }
 ```
+### 2. Open & Read File content
+```c
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+
+int main() {
+    int fd = open("newfilepr.txt", O_RDONLY);
+    if (fd < 0) {
+        perror("open");
+        return 1;
+    }
+
+    char msg[1024];
+    ssize_t bytes;
+    while ((bytes = read(fd, msg, sizeof(msg))) > 0)
+    {
+        write(STDOUT_FILENO, msg, bytes);
+    }
+
+    close(fd);
+    return 0;
+}
+```
