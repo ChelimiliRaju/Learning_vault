@@ -1,4 +1,4 @@
-### 1. create a new text file and write "Hello, World!" to it?
+###1.create a new text file and write "Hello, World!" to it?
 ```c
 #include<stdio.h>
 #include<unistd.h>
