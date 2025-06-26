@@ -193,6 +193,8 @@ int main() {
 	return 0;
 }
 ```
+### 12. Implement a C program to create a new directory named "Backup" in the parent directory?
+```c
 #include<stdio.h>
 #include<sys/stat.h>
 
@@ -203,6 +205,8 @@ int main() {
 		perror("mkdir");
 	return 0;
 }
+```
+
 #include<stdio.h>
 #include<unistd.h>
 
