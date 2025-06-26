@@ -179,8 +179,7 @@ int main() {
 	return 0;
 }
 ```
-### 11. Develop a C program to check if a directory named "Test" exists in the current
-directory?
+### 11. Develop a C program to check if a directory named "Test" exists in the current directory?
 ```c
 #include<stdio.h>
 #include<sys/stat.h>
