@@ -263,28 +263,10 @@ int main() {
 
     return 0;
 }
-
 ```
-#include<stdio.h>
-#include<unistd.h>
+### 14. Develop a C program to delete all files in a directory named "Temp"?
 
-int main() {
-	FILE *fp = fopen("6_delete_file.c", "r");
-	if (!fp) {
-		perror("fopen");
-		return 1;
-	}
-	int lines = 0;
-	char c;
-	while ((c = fgetc(fp)) != EOF) {
-		if (c == '\n')
-			lines++;
-	}
-
-	fclose(fp);
-	printf("no of lines: %d\n", lines);
-	return 0;
-}
+```c
 #include<stdio.h>
 #include<dirent.h>
 #include<unistd.h>
@@ -312,49 +294,59 @@ int main() {
 	closedir(d);
 	return 0;
 }
-
-
-#include <stdio.h>
-#include <sys/stat.h>
-#include <time.h>
-
-int main() {
-    struct stat st;
-    if (stat("copy.txt", &st) == 0) {
-        printf("Last modified: %s", ctime(&st.st_mtime));
-    } else {
-        perror("stat");
-    }
-    return 0;
-}
-
+```
+### 15. Implement a C program to count the number of lines in a file named "data.txt"
+```c
 #include<stdio.h>
-#include<string.h>
+#include<unistd.h>
 
 int main() {
-	FILE *fp = fopen("sample.txt", "a");
-	if (!fp){
+	FILE *fp = fopen("6_delete_file.c", "r");
+	if (!fp) {
 		perror("fopen");
 		return 1;
 	}
-	fputs("Goodbye!\n", fp);
-	printf("appended\n");
+	int lines = 0;
+	char c;
+	while ((c = fgetc(fp)) != EOF) {
+		if (c == '\n')
+			lines++;
+	}
+
 	fclose(fp);
+	printf("no of lines: %d\n", lines);
 	return 0;
 }
-#include <unistd.h>
+```
+### 16. Write a C program to append "Goodbye!" to the end of an existing file named"message.txt"?
+```c
 #include <stdio.h>
-#include <limits.h>
 
 int main() {
-    char cwd[PATH_MAX];
-    if (getcwd(cwd, sizeof(cwd)))
-        printf("CWD: %s\n", cwd);
-    else
-        perror("getcwd");
+    FILE *fp;
+
+    // Open the file in append mode ("a")
+    fp = fopen("message.txt", "a");
+
+    // Check if file opened successfully
+    if (fp == NULL) {
+        printf("Error: Could not open file.\n");
+        return 1;
+    }
+
+    // Append the text
+    fprintf(fp, "Goodbye!\n");
+
+    // Close the file
+    fclose(fp);
+
+    printf("Text appended successfully.\n");
     return 0;
 }
 
+```
+### 17. Implement a C program to change the permissions of a file named "file.txt" to readonly?
+```c
 #include<stdio.h>
 #include<sys/stat.h>
 
@@ -364,6 +356,9 @@ int main() {
 	else perror("chmod");
 	return 0;
 }
+```
+### 18. Write a C program to change the ownership of a file named "file.txt" to the user "user1"?
+```c
 #include<stdio.h>
 #include<unistd.h>
 #include<pwd.h>
@@ -381,20 +376,25 @@ int main() {
 	
 	return 0;
 }
-
-
-#include<stdio.h>
-#include<sys/stat.h>
-#include<time.h>
+```
+### 19. Develop a C program to get the last modified timestamp of a file named "file.txt"?
+```c
+#include <stdio.h>
+#include <sys/stat.h>
+#include <time.h>
 
 int main() {
-	struct stat st;
-	if (stat("sample.txt", &st )==0)
-		printf("Last modified on: %s ", ctime(&st.st_mtime));
-	else
-		perror("stat");
-	return 0;
+    struct stat st;
+    if (stat("copy.txt", &st) == 0) {
+        printf("Last modified: %s", ctime(&st.st_mtime));
+    } else {
+        perror("stat");
+    }
+    return 0;
 }
+```
+### 20. Implement a C program to create a temporary file and write some data to it?
+```c
 #include<stdio.h>
 
 int main() {
@@ -409,6 +409,27 @@ int main() {
 	close(fd);
 	return 0;
 }
+```
+
+
+
+#include <unistd.h>
+#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    char cwd[PATH_MAX];
+    if (getcwd(cwd, sizeof(cwd)))
+        printf("CWD: %s\n", cwd);
+    else
+        perror("getcwd");
+    return 0;
+}
+
+```
+### 21. Write a C program to check if a given path refers to a file or a directory?
+```c
+
 #include<stdio.h>
 #include<sys/stat.h>
 int main() {
@@ -427,6 +448,7 @@ int main() {
 		perror("stat");
 	return 0;
 }
+```
 #include <stdio.h>
 #include <unistd.h>
 
