@@ -426,27 +426,31 @@ int main() {
     return 0;
 }
 
-```
+
 ### 21. Write a C program to check if a given path refers to a file or a directory?
 ```c
 
 #include<stdio.h>
 #include<sys/stat.h>
+#include<string.h>
 int main() {
-	struct stat st;
+        struct stat st;
+        char path[100];
+        printf("enter path or file name");
+        fgets(path, sizeof(path),stdin);
+        path[strcspn(path, "\n")] = 0;
+        if ( stat(path,&st) == 0){
+                if(S_ISREG(st.st_mode))
+                        printf("its a file\n");
+                else if(S_ISDIR(st.st_mode))
+                        printf("its a directory\n");
+                else
+                        printf("other type\n");
 
-	if ( stat("/home/rajuc",&st) == 0){
-		if(S_ISREG(st.st_mode))
-			printf("its a file\n");
-		else if(S_ISDIR(st.st_mode))
-			printf("its a directory\n");
-		else
-			printf("other type\n");
-		
-	}
-	else
-		perror("stat");
-	return 0;
+        }
+        else
+                perror("stat");
+        return 0;
 }
 ```
 #include <stdio.h>
