@@ -206,7 +206,65 @@ int main() {
 	return 0;
 }
 ```
+### 13. Write a C program to recursively list all files and directories in a given directory?
 
+```c
+#include <stdio.h>
+#include <dirent.h>     // For opendir(), readdir()
+#include <string.h>     // For strcmp()
+#include <sys/stat.h>   // For stat()
+#include <stdlib.h>     // For exit()
+
+// Recursive function to list files and folders
+void listFiles(const char *path) {
+    DIR *dir;
+    struct dirent *entry;
+    struct stat info;
+    char fullPath[1000];
+
+    // Open the directory
+    dir = opendir(path);
+    if (dir == NULL) {
+        printf("Cannot open directory: %s\n", path);
+        return;
+    }
+
+    // Read all entries in the directory
+    while ((entry = readdir(dir)) != NULL) {
+
+        // Skip "." and ".."
+        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
+            continue;
+
+        // Create full path (e.g., path/filename)
+        sprintf(fullPath, "%s/%s", path, entry->d_name);
+        printf("%s\n", fullPath);  // Print the file or folder name
+
+        // Get information about the file/folder
+        stat(fullPath, &info);
+
+        // If it's a directory, call this function again
+        if (S_ISDIR(info.st_mode)) {
+            listFiles(fullPath);  // Recursive call
+        }
+    }
+
+    closedir(dir);  // Close the directory when done
+}
+
+int main() {
+    char path[100];
+
+    // Ask user to enter a folder path
+    printf("Enter directory path: ");
+    scanf("%s", path);
+
+    listFiles(path);  // Start listing
+
+    return 0;
+}
+
+```
 #include<stdio.h>
 #include<unistd.h>
 
