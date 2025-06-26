@@ -1488,6 +1488,193 @@ int main() {
     return 0;
 }
 ```
+# Linux File System and I/O – Q&A (85–123)
+
+---
+
+### **85. Types of files in Linux:**
+- Regular file (`-`)
+- Directory (`d`)
+- Symbolic link (`l`)
+- Character device (`c`)
+- Block device (`b`)
+- Socket (`s`)
+- Named pipe / FIFO (`p`)
+
+---
+
+### **86. Accessing IPC named pipes:**
+- Create: `mkfifo("myfifo", 0666);`
+- Access with `open()`, `read()`, and `write()` system calls.
+
+---
+
+### **87. User-space to hardware I/O calls:**
+- `read()`, `write()`, `ioctl()`.
+
+---
+
+### **88. Why are basic I/O calls called universal?**
+- They work on all file types: regular files, devices, sockets, pipes, etc.
+
+---
+
+### **89. Inode object contains:**
+- File type, permissions, owner UID/GID, timestamps, size, disk block addresses.
+
+---
+
+### **90. File info stored in:**
+- The inode.
+
+---
+
+### **91. Kernel uses which object to represent a file?**
+- The inode object.
+
+---
+
+### **92. Access inode info from user space?**
+- Yes, using `stat()`, `fstat()`, or `lstat()`.
+
+---
+
+### **93. System calls to access file information:**
+- `stat()`, `fstat()`, `lstat()`.
+
+---
+
+### **94. `ls` command uses:**
+- `stat()` or `lstat()` internally to get file metadata.
+
+---
+
+### **95. What happens after kernel finds inode?**
+- It creates a file object and maps it to the process's file descriptor table.
+
+---
+
+### **96. Contents of file object:**
+- File offset, access flags, reference count, pointer to inode, operations pointer.
+
+---
+
+### **97. Object used to represent open files in kernel:**
+- File object (struct file).
+
+---
+
+### **98. Primary data vs. others in file object:**
+- Primary = file content,  
+  Others = offset, access mode, flags, metadata.
+
+---
+
+### **99. Where is the file object pointer stored?**
+- In the process’s File Descriptor Table.
+
+---
+
+### **100. When is FD table created and its size?**
+- Created at process startup.  
+  Default size is usually 1024 (configurable).
+
+---
+
+### **101. When is file object created?**
+- When a file is opened using `open()` or `fopen()`.
+
+---
+
+### **102. What does `open()` return?**
+- An integer file descriptor.
+
+---
+
+### **103. What does `open()` return on first call?**
+- File descriptor `3`, since 0=stdin, 1=stdout, 2=stderr.
+
+---
+
+### **104. Why does `read()` need file object?**
+- To get current offset, inode, and permissions.
+
+---
+
+### **105. System call to move file cursor:**
+- `lseek(fd, offset, whence);`
+
+---
+
+### **106. Can multiple processes open same file?**
+- Yes. They share the same inode but have separate file descriptors.
+
+---
+
+### **107. Object kernel uses for file:**
+- Inode object.
+
+---
+
+### **108. Is there a file open limit?**
+- Yes. Per-process limit defined by `ulimit -n`.
+
+---
+
+### **109. Standard I/O calls (aka Library I/O):**
+- `fopen()`, `fread()`, `fwrite()`, `fclose()`
+
+---
+
+### **110. Basic I/O calls (aka System I/O):**
+- `open()`, `read()`, `write()`, `close()`
+
+---
+
+### **111. Difference between basic and standard I/O:**
+
+| Feature          | Basic I/O         | Standard I/O       |
+|------------------|-------------------|---------------------|
+| API              | `open()`, `read()`| `fopen()`, `fread()`|
+| Buffering        | No                | Yes                 |
+| Handle type      | int (fd)          | `FILE*`             |
+| Speed            | Fast, low-level   | Slower, high-level  |
+
+---
+
+### **112. Other ways to access files:**
+- Memory-mapped files using `mmap()`.
+
+---
+
+### **113. How does user access inode info?**
+- With `stat()`, `fstat()`, `lstat()` system calls.
+
+---
+
+### **114. How to access kernel info from user space?**
+- Using `/proc`, `/sys`, system calls, or kernel modules.
+
+---
+
+### **115. System calls to access file object:**
+- `read()`, `write()`, `lseek()`, `dup()`, `close()`
+
+---
+
+### **116. System calls to access inode:**
+- `stat()`, `open()`, `fstat()`
+
+---
+
+### **117. Print "Hello" using basic I/O:**
+```c
+#include <unistd.h>
+int main() {
+    write(1, "Hello\n", 6);
+    return 0;
+}
+
 
 
 
