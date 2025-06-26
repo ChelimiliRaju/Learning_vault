@@ -84,6 +84,8 @@ int main(){
 	return 0;
 }
 ```
+### 5. Develop a C program to rename a file from "oldname.txt" to "newname.txt"?
+```c
 #include<stdio.h>
 
 int main(){
@@ -92,7 +94,9 @@ int main(){
 	else perror("rename");
 	return 0;
 }
-
+```
+### 6. Implement a C program to delete a file named "delete_me.txt"?
+```c
 #include<unistd.h>
 #include<stdio.h>
 int main(){
@@ -102,7 +106,9 @@ int main(){
 	       	perror("rename");
 	return 0;
 }
-
+```
+### 7. Write a C program to copy the contents of one file to another?
+```c
 #include<stdio.h>
 #include<unistd.h>
 #include<fcntl.h>
@@ -125,6 +131,9 @@ int main(){
 	close(dest);
 	return 0;
 }
+```
+### 8. Develop a C program to move a file from one directory to another?
+```c
 #include<unistd.h>
 #include<stdio.h>
 
@@ -135,6 +144,9 @@ int main(){
 			perror("rename");
 	return 0;
 }
+```
+### 9. Implement a C program to list all files in the current directory?
+```c
 #include<stdio.h>
 #include<dirent.h>
 
@@ -152,6 +164,9 @@ int main() {
 	closedir(d);
 	return 0;
 }
+```
+### 10. Write a C program to get the size of a file named "file.txt"?
+```c
 #include<stdio.h>
 #include<sys/stat.h>
 
@@ -163,6 +178,10 @@ int main() {
 		perror("stat");
 	return 0;
 }
+```
+### 11. Develop a C program to check if a directory named "Test" exists in the current
+directory?
+```c
 #include<stdio.h>
 #include<sys/stat.h>
 
@@ -174,6 +193,7 @@ int main() {
 		printf("Directory does not exist.\n");
 	return 0;
 }
+```
 #include<stdio.h>
 #include<sys/stat.h>
 
