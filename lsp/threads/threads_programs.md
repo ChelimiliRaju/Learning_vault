@@ -59,3 +59,52 @@ int main() {
     return 0;
 }
 ```
+### 4. Two Threads that prints their ID
+```c
+#include <stdio.h>
+#include <pthread.h>
+
+void* threadid(void* arg) {
+        printf("Thread ID: %lu\n", pthread_self());
+        return NULL;
+}
+
+int main() {
+
+        pthread_t t1, t2;
+
+        pthread_create(&t1, NULL, threadid, NULL);
+        pthread_create(&t2, NULL, threadid, NULL);
+
+        pthread_join(t1, NULL);
+        pthread_join(t2, NULL);
+
+        return 0;
+}
+```
+
+### 5.SUM of two numbers using thread
+```c
+#include <pthread.h>
+#include <stdio.h>
+
+// Use global variables for simplicity
+int n1, n2;
+
+void* sum(void* arg) {
+    int total = n1 + n2;
+    printf("sum is %d\n", total);
+    return NULL;
+}
+
+int main() {
+    printf("enter two numbers: ");
+    scanf("%d %d", &n1, &n2);
+
+    pthread_t t1;
+    pthread_create(&t1, NULL, sum, NULL);
+    pthread_join(t1, NULL);
+
+    return 0;
+}
+```
